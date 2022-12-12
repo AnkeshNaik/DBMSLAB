@@ -1,0 +1,31 @@
+declare
+	cursor c1 is select * from supply1;
+	cursor c2 is select * from shipment1;
+	v_rec supply1%rowtype;
+begin
+	
+	for v_rec in c1 loop
+		dbms_output.put_line('SID  '|| v_rec.sid || ' :  PID  '|| v_rec.pid);
+	end loop;
+
+
+
+	open c1;
+	loop
+		fetch c1 into v_rec;
+		exit when c1%notfound;
+		if (v_rec.sid in(11,12) ) then
+			insert into shipment1 values(v_rec.sid,v_rec.pid,v_rec.quantity);
+		end if;
+	end loop;
+	close c1;
+
+
+
+	dbms_output.put_line('SHIPMENT TABLE');
+	for v_rec in c2 loop
+		dbms_output.put_line('SID  '|| v_rec.sid || ' :  PID  '|| v_rec.pid);
+	end loop;
+	
+end;
+/
