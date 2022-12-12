@@ -1,0 +1,25 @@
+
+declare
+	cursor c1 is select * from branch;
+	cursor c2 is select * from bcopy;
+	v_rec branch%rowtype;
+begin
+	dbms_output.put_line('BRANCH TABLE');
+	for v_rec in c1 loop
+		dbms_output.put_line('BID : '|| v_rec.bid ||'LOCATION : '|| v_rec.loc);
+	end loop;
+	
+	open c1;
+	loop
+	exit when c1%notfound;
+	fetch c1 into v_rec;
+	insert into bcopy values(v_rec.bid,v_rec.loc);
+	end loop;
+	close c1;
+
+	dbms_output.put_line('BRANCH COPIED TABLE');
+	for v_rec in c2 loop
+		dbms_output.put_line('BID : '|| v_rec.bid ||'LOCATION : '|| v_rec.loc);
+	end loop;
+end;
+/
