@@ -1,0 +1,20 @@
+declare
+	num Number;
+	flag Number;
+begin
+	num:= &num;
+	flag:=0;
+	for i in 2..(num/2) loop
+		if (mod(num,i)=0) then
+			flag:=1; exit;
+		end if;
+	end loop;
+	if (num=1) then
+		dbms_output.put_line(num||' : NEITHER PRIME NOR COMPOSITE');
+	elsif (flag=0) then
+		dbms_output.put_line(num|| ' : PRIME');
+	else
+		dbms_output.put_line(num|| ' : NOT PRIME');
+	end if;
+end;
+/
