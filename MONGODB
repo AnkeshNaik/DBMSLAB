@@ -1,0 +1,17 @@
+****************update****************
+ db.warehouse.update({"pno":1947},{$set:{"pno":2000}},{muliti:true})
+ 
+ 
+ **********count***************
+ db.warehouse.find({"sid":1234}).count()
+ 
+ 
+ **********find 2***********
+ db.library.find({"author":"zzz"},{"ISBN":1,"title":1,_id:0})
+ 
+ 
+ **********aggregate**********
+ db.Bank.aggregate([{
+... $group:{_id:{customer:'$cid'},
+... no_of_accounts:{$sum:1}}
+... }])
