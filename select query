@@ -1,0 +1,4 @@
+create table shipment as
+(select *
+from supply
+where 1=2);
